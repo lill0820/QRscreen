@@ -3,7 +3,7 @@ const state = QRStorage.load();
 const elements = {
   customerScreen: document.getElementById("customerScreen"),
   adminScreen: document.getElementById("adminScreen"),
-  adminHotspot: document.getElementById("adminHotspot"),
+  adminEntryButton: document.getElementById("adminEntryButton"),
   passwordDialog: document.getElementById("passwordDialog"),
   passwordForm: document.getElementById("passwordForm"),
   passwordInput: document.getElementById("passwordInput"),
@@ -26,9 +26,6 @@ const elements = {
   previewPlaceholder: document.getElementById("previewPlaceholder"),
   previewCaption: document.getElementById("previewCaption")
 };
-
-let adminTapCount = 0;
-let adminTapTimer = 0;
 
 function applyQrImage(imageElement, placeholderElement) {
   if (state.qrData) {
@@ -125,22 +122,7 @@ function updateStateFromForm() {
   }
 }
 
-function handleAdminHotspotClick() {
-  adminTapCount += 1;
-  clearTimeout(adminTapTimer);
-
-  if (adminTapCount >= QR_SCREEN_CONFIG.adminOpenTapCount) {
-    adminTapCount = 0;
-    openPasswordDialog();
-    return;
-  }
-
-  adminTapTimer = window.setTimeout(() => {
-    adminTapCount = 0;
-  }, QR_SCREEN_CONFIG.adminOpenTapResetMs);
-}
-
-elements.adminHotspot.addEventListener("click", handleAdminHotspotClick);
+elements.adminEntryButton.addEventListener("click", openPasswordDialog);
 
 elements.passwordForm.addEventListener("submit", (event) => {
   event.preventDefault();

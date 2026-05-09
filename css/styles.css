@@ -41,17 +41,24 @@ button {
   overflow: hidden;
 }
 
-.admin-hotspot {
+.admin-entry-button {
   position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  width: 72px;
-  height: 72px;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  cursor: default;
+  top: 18px;
+  left: 18px;
+  z-index: 11;
+  min-height: 42px;
+  border: 1px solid rgba(23, 32, 38, 0.14);
+  border-radius: 8px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--ink);
+  box-shadow: 0 8px 24px rgba(23, 32, 38, 0.12);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.admin-entry-button:hover {
+  background: white;
 }
 
 .qr-display {
