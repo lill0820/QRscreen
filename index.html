@@ -11,13 +11,13 @@
     <button class="admin-entry-button" id="adminEntryButton" type="button">管理</button>
 
     <section class="qr-display">
+      <p class="customer-caption" id="customerCaption">混雑状況などはこちらのQRコードを読み取ってご確認ください</p>
       <div class="qr-panel" id="qrPanel">
         <img class="qr-image" id="qrImage" alt="読み取り用QRコード" hidden>
         <div class="qr-placeholder" id="qrPlaceholder">
           QRコード未設定
         </div>
       </div>
-      <p class="customer-caption" id="customerCaption">スマートフォンのカメラで読み取ってください</p>
     </section>
   </main>
 
@@ -56,8 +56,8 @@
         </div>
 
         <div class="field">
-          <label for="captionInput">QR下の案内文</label>
-          <input id="captionInput" type="text" maxlength="40">
+          <label for="captionInput">QR上の案内文</label>
+          <input id="captionInput" type="text" maxlength="60">
         </div>
 
         <div class="field">
@@ -93,11 +93,11 @@
       <div class="preview-shell">
         <div class="preview-label">お客様に見える画面</div>
         <div class="preview-screen">
+          <p class="preview-caption" id="previewCaption">混雑状況などはこちらのQRコードを読み取ってご確認ください</p>
           <div class="preview-qr-panel" id="previewQrPanel">
             <img class="preview-qr-image" id="previewQrImage" alt="QRコードのプレビュー" hidden>
             <div class="preview-placeholder" id="previewPlaceholder">QRコード未設定</div>
           </div>
-          <p class="preview-caption" id="previewCaption">スマートフォンのカメラで読み取ってください</p>
         </div>
       </div>
     </section>

@@ -1,10 +1,14 @@
 const QRStorage = (() => {
-  const { storageKey, defaultPassword, defaults } = QR_SCREEN_CONFIG;
+  const { storageKey, defaultPassword, defaults, previousDefaultCaption } = QR_SCREEN_CONFIG;
 
   function normalizeSettings(saved) {
+    const savedCaption = saved && saved.caption;
+    const caption = savedCaption === previousDefaultCaption ? defaults.caption : savedCaption;
+
     return {
       ...defaults,
       ...(saved || {}),
+      caption: caption || defaults.caption,
       size: Number(saved && saved.size ? saved.size : defaults.size),
       password: saved && saved.password ? saved.password : defaultPassword
     };

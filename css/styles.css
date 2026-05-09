@@ -65,7 +65,7 @@ button {
   width: min(100%, 900px);
   display: grid;
   justify-items: center;
-  gap: clamp(18px, 3vw, 34px);
+  gap: clamp(22px, 3.5vw, 42px);
 }
 
 .qr-panel {
