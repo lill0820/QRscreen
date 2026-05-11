@@ -1,17 +1,30 @@
 import { qrScreenConfig } from "./qr-screen-config";
 
+const hexColorPattern = /^#[0-9a-f]{6}$/i;
+
 export function normalizeSettings(saved) {
   const savedCaption = saved?.caption;
   const caption =
     savedCaption === qrScreenConfig.previousDefaultCaption
       ? qrScreenConfig.defaults.caption
       : savedCaption;
+  const templateIds = new Set(qrScreenConfig.backgroundTemplates.map((template) => template.id));
+  const backgroundMode = saved?.backgroundMode === "template" ? "template" : qrScreenConfig.defaults.backgroundMode;
+  const backgroundTemplate = templateIds.has(saved?.backgroundTemplate)
+    ? saved.backgroundTemplate
+    : qrScreenConfig.defaults.backgroundTemplate;
+  const background = hexColorPattern.test(saved?.background || "")
+    ? saved.background
+    : qrScreenConfig.defaults.background;
 
   return {
     ...qrScreenConfig.defaults,
     ...(saved || {}),
     caption: caption || qrScreenConfig.defaults.caption,
     size: Number(saved?.size || qrScreenConfig.defaults.size),
+    backgroundMode,
+    backgroundTemplate,
+    background,
     password: saved?.password || qrScreenConfig.defaultPassword
   };
 }

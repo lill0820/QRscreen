@@ -184,6 +184,62 @@ input[type="color"] {
   background: white;
 }
 
+.background-picker {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.background-option {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 10px;
+  align-items: center;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.background-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.background-option.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(13, 127, 113, 0.13);
+}
+
+.background-swatch {
+  width: 42px;
+  height: 34px;
+  border: 1px solid rgba(23, 32, 38, 0.12);
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+}
+
+.background-swatch.solid {
+  border-color: rgba(23, 32, 38, 0.18);
+}
+
+.color-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.color-row label {
+  margin: 0;
+}
+
 .error-message {
   min-height: 22px;
   margin: 8px 0 0;

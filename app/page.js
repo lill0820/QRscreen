@@ -5,6 +5,17 @@ import QrPanel from "./components/QrPanel";
 import { qrScreenConfig } from "./lib/qr-screen-config";
 import { loadSettings, normalizeSettings, saveSettings } from "./lib/qr-storage";
 
+function getCustomerBackground(settings) {
+  if (settings.backgroundMode !== "template") {
+    return settings.background;
+  }
+
+  return (
+    qrScreenConfig.backgroundTemplates.find((template) => template.id === settings.backgroundTemplate)?.css ||
+    qrScreenConfig.defaults.background
+  );
+}
+
 export default function Home() {
   const [settings, setSettings] = useState(() => normalizeSettings(null));
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,8 +32,8 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    document.documentElement.style.setProperty("--customer-bg", settings.background);
-  }, [settings.background]);
+    document.documentElement.style.setProperty("--customer-bg", getCustomerBackground(settings));
+  }, [settings]);
 
   function persist(nextSettings) {
     const normalized = normalizeSettings(nextSettings);
@@ -211,13 +222,55 @@ export default function Home() {
             </div>
 
             <div className="field">
-              <label htmlFor="backgroundInput">背景色</label>
-              <input
-                id="backgroundInput"
-                type="color"
-                value={settings.background}
-                onChange={(event) => updateSettings({ ...settings, background: event.target.value })}
-              />
+              <label>背景</label>
+              <div className="background-picker" role="radiogroup" aria-label="背景テンプレート">
+                <label className={`background-option ${settings.backgroundMode === "color" ? "selected" : ""}`}>
+                  <input
+                    type="radio"
+                    name="backgroundMode"
+                    checked={settings.backgroundMode === "color"}
+                    onChange={() => updateSettings({ ...settings, backgroundMode: "color" })}
+                  />
+                  <span className="background-swatch solid" style={{ background: settings.background }} aria-hidden="true" />
+                  <span>単色</span>
+                </label>
+
+                {qrScreenConfig.backgroundTemplates.map((template) => (
+                  <label
+                    className={`background-option ${
+                      settings.backgroundMode === "template" && settings.backgroundTemplate === template.id ? "selected" : ""
+                    }`}
+                    key={template.id}
+                  >
+                    <input
+                      type="radio"
+                      name="backgroundMode"
+                      checked={settings.backgroundMode === "template" && settings.backgroundTemplate === template.id}
+                      onChange={() =>
+                        updateSettings({
+                          ...settings,
+                          backgroundMode: "template",
+                          backgroundTemplate: template.id
+                        })
+                      }
+                    />
+                    <span className="background-swatch" style={{ background: template.css }} aria-hidden="true" />
+                    <span>{template.name}</span>
+                  </label>
+                ))}
+              </div>
+
+              <div className="color-row">
+                <label htmlFor="backgroundInput">単色カラー</label>
+                <input
+                  id="backgroundInput"
+                  type="color"
+                  value={settings.background}
+                  onChange={(event) =>
+                    updateSettings({ ...settings, backgroundMode: "color", background: event.target.value })
+                  }
+                />
+              </div>
             </div>
 
             <div className="field">
