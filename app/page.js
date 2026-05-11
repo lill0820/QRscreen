@@ -296,7 +296,7 @@ export default function Home() {
           </form>
 
           <p className="admin-note">
-            お客様画面から管理画面を開くには、左上の管理ボタンを押してパスワードを入力します。初期パスワードは <strong>1234</strong> です。
+            お客様画面から管理画面を開くには、左上の管理ボタンを押してパスワードを入力します。現在のパスワードは <strong>{settings.password}</strong> です。
           </p>
         </aside>
 
