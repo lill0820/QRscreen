@@ -97,26 +97,13 @@ export default function Home() {
     passwordInputRef.current?.select();
   }
 
-  function handleQrFileChange(event) {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.addEventListener("load", () => {
-      persist({
-        ...settings,
-        qrData: String(reader.result)
-      });
-    });
-    reader.readAsDataURL(file);
-  }
-
   function handleSave(event) {
     event.preventDefault();
 
     const nextSettings = {
       ...settings,
       caption: settings.caption.trim() || qrScreenConfig.defaults.caption,
+      qrData: settings.qrData.trim() || qrScreenConfig.defaults.qrData,
       password: passwordChange.trim() || settings.password
     };
 
@@ -190,8 +177,13 @@ export default function Home() {
 
           <form onSubmit={handleSave}>
             <div className="field">
-              <label htmlFor="qrFile">お客様に見せるQRコード画像</label>
-              <input id="qrFile" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" onChange={handleQrFileChange} />
+              <label htmlFor="qrDataInput">QRコードの中身</label>
+              <input
+                id="qrDataInput"
+                type="url"
+                value={settings.qrData}
+                onChange={(event) => updateSettings({ ...settings, qrData: event.target.value })}
+              />
             </div>
 
             <div className="field">

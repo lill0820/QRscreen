@@ -1,5 +1,5 @@
 export const qrScreenConfig = {
-  storageKey: "qr-screen-settings-v2",
+  storageKey: "qr-screen-settings-v3",
   defaultPassword: "1234",
   previousDefaultCaption: "スマートフォンのカメラで読み取ってください",
   backgroundTemplates: [
@@ -35,6 +35,6 @@ export const qrScreenConfig = {
     backgroundMode: "color",
     backgroundTemplate: "sunrise",
     background: "#f4f7f8",
-    qrData: ""
+    qrData: "https://github.com/lill0820/QRscreen.git"
   }
 };

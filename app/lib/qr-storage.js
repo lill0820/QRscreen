@@ -21,6 +21,7 @@ export function normalizeSettings(saved) {
     ...qrScreenConfig.defaults,
     ...(saved || {}),
     caption: caption || qrScreenConfig.defaults.caption,
+    qrData: String(saved?.qrData || "").trim() || qrScreenConfig.defaults.qrData,
     size: Number(saved?.size || qrScreenConfig.defaults.size),
     backgroundMode,
     backgroundTemplate,
