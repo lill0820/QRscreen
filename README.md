@@ -4,21 +4,23 @@
 
 ## 使い方
 
-1. `index.html` をブラウザで開く
-2. 左上の `管理` ボタンを押す
-3. 初期パスワード `1234` を入力する
-4. QRコード画像、案内文、サイズ、背景色を設定する
-5. `保存して表示` を押す
+1. `npm install`
+2. `npm run dev`
+3. ブラウザで `http://localhost:3000` を開く
+4. 左上の `管理` ボタンを押す
+5. 初期パスワード `1234` を入力する
+6. QRコード画像、案内文、サイズ、背景色を設定する
+7. `保存して表示` を押す
 
 設定は同じブラウザの `localStorage` に保存されます。
 
 ## ファイル構成
 
-- `index.html`: 画面の部品
-- `css/styles.css`: 見た目
-- `js/config.js`: 初期設定
-- `js/storage.js`: 保存と読み込み
-- `js/app.js`: 画面操作
+- `app/page.js`: 画面操作と状態管理
+- `app/components/QrPanel.js`: QR表示部品
+- `app/lib/qr-screen-config.js`: 初期設定
+- `app/lib/qr-storage.js`: 保存と読み込み
+- `app/globals.css`: 見た目
 
 ## 注意
 

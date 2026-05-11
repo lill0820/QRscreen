@@ -1,0 +1,19 @@
+{
+  "name": "qr-screen",
+  "version": "1.0.0",
+  "private": true,
+  "description": "QR code display screen built with Next.js.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^15.3.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
